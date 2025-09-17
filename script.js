@@ -1,5 +1,12 @@
+let humanScore = 0;
+let computerScore = 0;
+let roundCounts = 0;
+
+const humanSelection = getHumanChoise();
+const computerSelection = getComputerChoise();
+
 function getComputerChoise() {
-    let computreChoise;
+    let computerChoise;
     let randomNumber = Math.floor(Math.random() * 100);
     console.log(randomNumber)
     if(randomNumber <= 33){
@@ -32,10 +39,41 @@ function getHumanChoise() {
     else if (humanChoise === "3"){
         humanChoise = "scissor"
     }
-    
-
-    console.log(humanChoise)
-
+    return humanChoise
 };
 
-console.log(getHumanChoise());
+function playRound(humanSelection, computerSelection) {
+    while(roundCounts != 5){    
+        if (humanSelection === "paper") {
+            if(computerSelection === "scissor"){
+                computerScore ++;
+            }
+            else if(computerSelection === "rock") {
+                humanScore ++;
+            }
+        }
+        else if (humanSelection === "rock") {
+            if(computerSelection === "paper"){
+                computerScore ++;
+            }
+            else if(computerSelection === "scissor") {
+                humanScore ++;
+            }
+        }
+        else if (humanSelection === "scissor") {
+            if(computerSelection=== "rock"){
+                computerScore ++;
+            }
+            else if(computerSelection === "paper") {
+                humanScore ++;
+            }
+        }
+        console.log("Human Score: " + humanScore + "Computer Score: " + computerScore)
+        roundCounts ++;
+        humanSelection = getHumanChoise();
+        computerSelection = getComputerChoise();
+    }
+    return("Human Score: " + humanScore + "Computer Score: " + computerScore)
+}
+
+console.log(playRound(humanSelection, computerSelection));
